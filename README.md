@@ -9,7 +9,7 @@
 		<img src="https://img.shields.io/badge/JDK-8+-green.svg"  alt=""/>
 	</a>
     <a href="https://www.spigotmc.org">
-        <img src="https://img.shields.io/badge/-Bukkit-yellow" alt=""/>
+        <img src="https://img.shields.io/badge/-Spigot-yellow" alt=""/>
     </a>
     <a href= "https://github.com/SNWCreations/KookBC">
         <img src="https://img.shields.io/badge/-KookBC-red" alt="">

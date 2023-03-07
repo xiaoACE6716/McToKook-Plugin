@@ -1,0 +1,27 @@
+#特别说明,以下的配置为必填选项，不填插件自动禁用
+
+#Kook机器人的token (不会有人到这里了还不知道token怎么获取吧)
+bot-token:
+#要进行McToKook的Kook频道ID (打开Kook设置里的开发者模式,然后在你想要和服务器互通的频道上右键，然后复制ID)
+Channel-ID:
+
+#特别说明,以下的配置即使不填任何东西,也还是会按照默认值调用
+
+#自定义MC消息格式 你可以按照默认给出的样式去自定义，记得保留带{}的内容
+#默认为: 用户: {nickName} 说: {message}
+To-Minecraft-Message: '用户: {nickName} 说: {message}'
+#自定义KOOK消息格式 你可以按照默认给出的样式去自定义，记得保留带{}的内容
+#默认为: 玩家: {playerName} 说: {message}
+To-Kook-Message: '玩家: {playerName} 说: {message}'
+#自定义MC玩家上线消息格式 你可以按照默认给出的样式去自定义，记得保留带{}的内容
+#默认为: {playerName}偷偷的溜进了服务器
+Player-Join-Message: '{playerName}偷偷的溜进了服务器'
+#自定义MC玩家下线消息格式 你可以按照默认给出的样式去自定义，记得保留带{}的内容
+#默认为: 肝帝{playerName}歇逼了
+Player-Quit-Message: '肝帝{playerName}歇逼了'
+#各项功能的开关
+#默认全部为true 如果想关闭请改为false
+To-Minecraft: true
+To-Kook: true
+Join-Message: true
+Quit-Message: true

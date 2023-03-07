@@ -1,0 +1,6 @@
+name: McToKook
+version: '${project.version}'
+main: com.xiaoace.mctokook.McToKook
+api-version: 1.19
+prefix: McToKook
+author: xiaoACE

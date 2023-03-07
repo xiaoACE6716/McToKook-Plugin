@@ -4,6 +4,8 @@
 版本：Minecraft 1.19.3\
 基于Spigot api 与 JKook api 与 KookBC
 
+![](https://img.kookapp.cn/assets/2023-03/ZlMvx9uQsY0mj08v.png)
+
 <p>
     <a  href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">
 		<img src="https://img.shields.io/badge/JDK-8+-green.svg"  alt=""/>

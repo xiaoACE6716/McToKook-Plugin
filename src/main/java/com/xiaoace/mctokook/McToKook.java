@@ -36,7 +36,7 @@ public final class McToKook extends JavaPlugin implements Listener, CommandExecu
         return INSTANCE;
     }
 
-    private static final File kbcLocal = new File("plugins/kbc.yml");
+    private File kbcLocal;
 
     static KBCClient kbcClient = null;
     static String bot_token = "No token provided";
@@ -46,6 +46,7 @@ public final class McToKook extends JavaPlugin implements Listener, CommandExecu
     public void onLoad() {
 
         INSTANCE = this;
+        kbcLocal = new File(getDataFolder(), "kbc.yml"); // use your plugin data folder instead of global! -- SNWCreations
 
         //bukkit保存基础配置文件
         saveDefaultConfig();
@@ -71,14 +72,16 @@ public final class McToKook extends JavaPlugin implements Listener, CommandExecu
         channel_ID = bukkit_config.getString("Channel-ID","No channel ID provided");
 
         if (bot_token.equals("No token provided")){
-            System.out.println("你没有提供bot-token或者bot-token不正确");
-            System.out.println(bot_token);
+            getLogger().error("你没有提供bot-token或者bot-token不正确");
+            getLogger().error(bot_token);
             getPluginLoader().disablePlugin(this);
-        }else {
+            return;
+        } else {
             if (channel_ID.equals("No channel ID provided")){
-                System.out.println("你没有提供channel ID或channel ID不正确");
-                System.out.println(channel_ID);
+                getLogger().error("你没有提供channel ID或channel ID不正确");
+                getLogger().error(channel_ID);
                 getPluginLoader().disablePlugin(this);
+                return; // do not waste memory for constructing KBCClient! -- SNWCreations
             }
         }
 
@@ -96,12 +99,13 @@ public final class McToKook extends JavaPlugin implements Listener, CommandExecu
             Bukkit.getPluginManager().registerEvents(this,this);
             getLogger().info("Kook机器人启动成功");
         }catch (Exception e){
-            getLogger().info("Kook机器人启动失败");
+            getLogger().error("Kook机器人启动失败");
             e.printStackTrace();
         }
 
         //夏夜说: 不要用InternalPlugin,但是我摆了！-
-        kbcClient.getCore().getEventManager().registerHandlers(new InternalPlugin(kbcClient),new KookListener());
+        // why don't you read KBCClient source code before you writing this??? -- SNWCreations
+        kbcClient.getCore().getEventManager().registerHandlers(kbcClient.getInternalPlugin(), new KookListener());
 
     }
 
@@ -188,7 +192,7 @@ public final class McToKook extends JavaPlugin implements Listener, CommandExecu
 
 
     //KookBC保存配置文件 爱来自夏夜
-    private static void saveKBCConfig() {
+    private void saveKBCConfig() {
         try (final InputStream stream = McToKook.class.getResourceAsStream("/kbc.yml")) {
             if (stream == null) {
                 throw new Error("Unable to find kbc.yml");

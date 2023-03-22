@@ -9,7 +9,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import snw.jkook.entity.abilities.Accessory;
 import snw.jkook.entity.channel.Channel;
 import snw.jkook.entity.channel.TextChannel;
-import snw.jkook.message.component.MarkdownComponent;
 import snw.jkook.message.component.card.CardBuilder;
 import snw.jkook.message.component.card.MultipleCardComponent;
 import snw.jkook.message.component.card.Size;
@@ -19,7 +18,7 @@ import snw.jkook.message.component.card.element.MarkdownElement;
 import snw.jkook.message.component.card.module.SectionModule;
 
 import static com.xiaoace.mctokook.McToKook.getKbcClient;
-import static com.xiaoace.mctokook.utils.AllTheTools.getPlayerIconUrl;
+import static com.xiaoace.mctokook.utils.AllTheTools.getPlayerIconUrl1;
 
 public class OnPlayerQuit implements Listener {
 
@@ -52,7 +51,7 @@ public class OnPlayerQuit implements Listener {
         String needFormatMessage = McToKook.getInstance().getConfig().getString("Player-Quit-Message","肝帝{playerName}歇逼了");
         String formattedMessage = needFormatMessage.replaceAll("\\{playerName}",playerName);
 
-        String imageUrl = getPlayerIconUrl(playerName,playerUUID);
+        String imageUrl = getPlayerIconUrl1(playerName,playerUUID);
 
         CardBuilder cardBuilder = new CardBuilder();
         cardBuilder.setTheme(Theme.DANGER).setSize(Size.LG);

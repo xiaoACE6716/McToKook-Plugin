@@ -28,6 +28,9 @@ public class OnPlayerMessage implements Listener {
                 public void run(){
                     String playerName = asyncPlayerChatEvent.getPlayer().getName();
                     String message = asyncPlayerChatEvent.getMessage();
+
+                    //System.out.println("来自Minecraft的消息: " + message);
+
                     McToKook.getInstance().getLogger().info("玩家: " +playerName+"说了: "+ message );
                     Channel channel = getKbcClient().getCore().getHttpAPI().getChannel(McToKook.getInstance().getConfig().getString("Channel-ID"));
                     FileConfiguration bukkit_config = McToKook.getInstance().getConfig();

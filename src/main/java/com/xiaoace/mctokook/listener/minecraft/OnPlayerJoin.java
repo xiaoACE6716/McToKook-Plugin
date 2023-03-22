@@ -1,9 +1,7 @@
 package com.xiaoace.mctokook.listener.minecraft;
 
-import cn.hutool.core.net.url.UrlBuilder;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.http.HttpUtil;
 import com.xiaoace.mctokook.McToKook;
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -21,7 +19,7 @@ import snw.jkook.message.component.card.element.MarkdownElement;
 import snw.jkook.message.component.card.module.SectionModule;
 
 import static com.xiaoace.mctokook.McToKook.getKbcClient;
-import static com.xiaoace.mctokook.utils.AllTheTools.getPlayerIconUrl;
+import static com.xiaoace.mctokook.utils.AllTheTools.getPlayerIconUrl1;
 
 public class OnPlayerJoin implements Listener {
 
@@ -53,7 +51,7 @@ public class OnPlayerJoin implements Listener {
         String needFormatMessage = McToKook.getInstance().getConfig().getString("Player-Join-Message","{playerName}偷偷的溜进了服务器");
         String formattedMessage = needFormatMessage.replaceAll("\\{playerName}",playerName);
 
-        String imageUrl = getPlayerIconUrl(playerName,playerUUID);
+        String imageUrl = getPlayerIconUrl1(playerName,playerUUID);
 
         CardBuilder cardBuilder = new CardBuilder();
         cardBuilder.setTheme(Theme.SUCCESS).setSize(Size.LG);
@@ -66,6 +64,18 @@ public class OnPlayerJoin implements Listener {
         );
 
         return cardBuilder.build();
+    }
+
+    //用于加载材质包
+    @EventHandler
+    void onJoin(PlayerJoinEvent event){
+
+        Bukkit.getScheduler().runTaskLater(McToKook.getInstance(),() ->{
+
+            event.getPlayer().setResourcePack("https://static.planetminecraft.com/files/resource_media/texture/twemoji-emojies.zip");
+
+        },20L);
+
     }
 
 }

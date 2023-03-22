@@ -48,7 +48,8 @@ public class KookListener implements Listener {
 
             TextComponent textComponent = ((TextComponent) component);
 
-            //FileConfiguration bukkit_config = McToKook.getInstance().getConfig();
+            //System.out.println("来自Kook的消息: " + textComponent);
+            
             String needFormatMessage = bukkit_config.getString("To-Minecraft-Message","用户: {nickName} 说: {message}");
 
             String formattedMessage = needFormatMessage.replaceAll("\\{nickName}",user_nickname)

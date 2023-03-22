@@ -8,7 +8,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.HandlerList;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import snw.jkook.JKook;
 import snw.jkook.config.InvalidConfigurationException;
@@ -23,6 +22,8 @@ import java.io.InputStream;
 import java.util.logging.Level;
 
 public final class McToKook extends JavaPlugin implements CommandExecutor{
+
+
 
     private static McToKook INSTANCE;
 
@@ -42,8 +43,11 @@ public final class McToKook extends JavaPlugin implements CommandExecutor{
     static String bot_token = "No token provided";
     static String channel_ID = "No channel ID provided";
 
+
     @Override
     public void onLoad() {
+
+
 
         INSTANCE = this;
         kbcLocal = new File(getDataFolder(), "kbc.yml");

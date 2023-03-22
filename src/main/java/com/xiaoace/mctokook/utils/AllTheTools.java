@@ -29,4 +29,12 @@ public class AllTheTools {
         return getKbcClient().getCore().getHttpAPI().uploadFile(fileName,playerIconBytes);
     }
 
+    public static String getPlayerIconUrl1(String playerName,String playerUUID){
+
+        return UrlBuilder.of("https://crafatar.com")
+                .addPath("avatars")
+                .addPath(playerUUID)
+                .addQuery("overlay","true").build();
+    }
+
 }

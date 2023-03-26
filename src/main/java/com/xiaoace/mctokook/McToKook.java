@@ -110,6 +110,8 @@ public final class McToKook extends JavaPlugin implements CommandExecutor{
         }catch (Exception e){
             getLogger().log(Level.SEVERE,"Kook机器人启动失败");
             e.printStackTrace();
+            getPluginLoader().disablePlugin(this);
+            return; // prevent NPE -- SNWCreations
         }
 
         //夏夜说: 不要用InternalPlugin,但是我摆了！
@@ -121,7 +123,7 @@ public final class McToKook extends JavaPlugin implements CommandExecutor{
     public void onDisable() {
 
         //禁用插件时注销所有事件
-        HandlerList.unregisterAll();
+        HandlerList.unregisterAll(this); // you should NOT affect other plugin. -- SNWCreations
         //关闭KookBC
         kbcClient.shutdown();
     }

@@ -23,8 +23,6 @@ import java.util.logging.Level;
 
 public final class McToKook extends JavaPlugin implements CommandExecutor{
 
-
-
     private static McToKook INSTANCE;
 
     public static McToKook getInstance() {
@@ -46,8 +44,6 @@ public final class McToKook extends JavaPlugin implements CommandExecutor{
 
     @Override
     public void onLoad() {
-
-
 
         INSTANCE = this;
         kbcLocal = new File(getDataFolder(), "kbc.yml");

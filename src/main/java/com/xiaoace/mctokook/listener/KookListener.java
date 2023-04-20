@@ -14,11 +14,13 @@ import snw.jkook.message.TextChannelMessage;
 import snw.jkook.message.component.BaseComponent;
 import snw.jkook.message.component.TextComponent;
 
+import java.util.Objects;
+
 import static com.xiaoace.mctokook.utils.MinecraftTextConverter.convertToMinecraftFormat;
 
 public class KookListener implements Listener {
 
-    FileConfiguration bukkit_config = McToKook.getInstance().getConfig();
+    final FileConfiguration bukkit_config = McToKook.getInstance().getConfig();
 
     //Kook消息监听器
     @EventHandler()
@@ -39,8 +41,8 @@ public class KookListener implements Listener {
             message = channelMessageEvent.getMessage();
         }
 
-        String user_nickname = user.getNickName(channelMessageEvent.getChannel().getGuild());
-        BaseComponent component = message.getComponent();
+        String user_nickname = Objects.requireNonNull(user).getNickName(channelMessageEvent.getChannel().getGuild());
+        BaseComponent component = Objects.requireNonNull(message).getComponent();
 
         //将要发到服务器的消息
 
@@ -48,8 +50,9 @@ public class KookListener implements Listener {
 
             TextComponent textComponent = ((TextComponent) component);
 
-            //System.out.println("来自Kook的消息: " + textComponent);
-            
+
+            //McToKook.getInstance().getLogger().info("来自Kook的消息: " + textComponent);
+
             String needFormatMessage = bukkit_config.getString("To-Minecraft-Message","用户: {nickName} 说: {message}");
 
             String formattedMessage = needFormatMessage.replaceAll("\\{nickName}",user_nickname)

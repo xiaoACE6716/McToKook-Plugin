@@ -16,7 +16,8 @@ public class AllTheTools {
      * @param playerUUID 玩家uuid
      * @return 上传至KOOK图床后的图片的url
      */
-    public static String getPlayerIconUrl(String playerName,String playerUUID){
+    @SuppressWarnings("unused")
+    public static String getPlayerIconUrl(String playerName, String playerUUID){
 
         String playerIconUrl = UrlBuilder.of("https://crafatar.com")
                 .addPath("avatars")
@@ -29,7 +30,7 @@ public class AllTheTools {
         return getKbcClient().getCore().getHttpAPI().uploadFile(fileName,playerIconBytes);
     }
 
-    public static String getPlayerIconUrl1(String playerName,String playerUUID){
+    public static String getPlayerIconUrl1(String playerUUID){
 
         return UrlBuilder.of("https://crafatar.com")
                 .addPath("avatars")

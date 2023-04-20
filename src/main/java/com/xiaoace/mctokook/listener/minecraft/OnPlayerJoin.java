@@ -27,7 +27,7 @@ public class OnPlayerJoin implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onMinecraftPlayerLogin(PlayerJoinEvent playerJoinEvent){
 
-        if (McToKook.getInstance().getConfig().getBoolean("Join-Message",true)){
+        if (McToKook.getInstance().getConfig().getBoolean("Join-Message",true) && !playerJoinEvent.getPlayer().hasPermission("McToKook.JoinSilent")){
             new BukkitRunnable(){
                 @Override
                 public void run(){
@@ -51,14 +51,14 @@ public class OnPlayerJoin implements Listener {
         String needFormatMessage = McToKook.getInstance().getConfig().getString("Player-Join-Message","{playerName}偷偷的溜进了服务器");
         String formattedMessage = needFormatMessage.replaceAll("\\{playerName}",playerName);
 
-        String imageUrl = getPlayerIconUrl1(playerName,playerUUID);
+        String imageUrl = getPlayerIconUrl1(playerUUID);
 
         CardBuilder cardBuilder = new CardBuilder();
         cardBuilder.setTheme(Theme.SUCCESS).setSize(Size.LG);
         cardBuilder.addModule(
                 new SectionModule(
                         new MarkdownElement(formattedMessage),
-                        new ImageElement(imageUrl,playerName,Size.SM,false),
+                        new ImageElement(imageUrl,"McToKook",Size.SM,false),
                         Accessory.Mode.LEFT
                 )
         );
@@ -66,15 +66,11 @@ public class OnPlayerJoin implements Listener {
         return cardBuilder.build();
     }
 
-    //用于加载材质包
+    //用于使玩家进入服务器的时候加载材质包
     @EventHandler
     void onJoin(PlayerJoinEvent event){
 
-        Bukkit.getScheduler().runTaskLater(McToKook.getInstance(),() ->{
-
-            event.getPlayer().setResourcePack("https://static.planetminecraft.com/files/resource_media/texture/twemoji-emojies.zip");
-
-        },20L);
+        Bukkit.getScheduler().runTaskLater(McToKook.getInstance(),() -> event.getPlayer().setResourcePack("https://static.planetminecraft.com/files/resource_media/texture/twemoji-emojies.zip"),20L);
 
     }
 

@@ -5,6 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.permissions.Permission;
 import org.bukkit.scheduler.BukkitRunnable;
 import snw.jkook.entity.abilities.Accessory;
 import snw.jkook.entity.channel.Channel;
@@ -26,7 +27,7 @@ public class OnPlayerQuit implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onMinecraftPlayerQuit(PlayerQuitEvent playerQuitEvent){
 
-        if (McToKook.getInstance().getConfig().getBoolean("Quit-Message",true)){
+        if (McToKook.getInstance().getConfig().getBoolean("Quit-Message",true) && !playerQuitEvent.getPlayer().hasPermission("McToKook.QuitSilent")){
             new BukkitRunnable(){
                 @Override
                 public void run(){
@@ -51,14 +52,14 @@ public class OnPlayerQuit implements Listener {
         String needFormatMessage = McToKook.getInstance().getConfig().getString("Player-Quit-Message","肝帝{playerName}歇逼了");
         String formattedMessage = needFormatMessage.replaceAll("\\{playerName}",playerName);
 
-        String imageUrl = getPlayerIconUrl1(playerName,playerUUID);
+        String imageUrl = getPlayerIconUrl1(playerUUID);
 
         CardBuilder cardBuilder = new CardBuilder();
         cardBuilder.setTheme(Theme.DANGER).setSize(Size.LG);
         cardBuilder.addModule(
                 new SectionModule(
                         new MarkdownElement(formattedMessage),
-                        new ImageElement(imageUrl,playerName,Size.SM,false),
+                        new ImageElement(imageUrl,"McToKook",Size.SM,false),
                         Accessory.Mode.LEFT
                 )
         );

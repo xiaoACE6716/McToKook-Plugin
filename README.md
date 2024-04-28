@@ -1,5 +1,11 @@
 # MCToKook Plugin
 
+# 注意！注意！注意！注意！注意！注意！
+
+该插件已经归档并且转移到新项目进行开发(早该说明了，但是一直忘了)  
+新项目地址: [KOOKSRV](https://github.com/Kirby-of-the-Stars/KookSRV)  
+等我写完1.19.4分支会逐渐更新其他版本!
+
 这是一个可以让MC的聊天与指定的一个Kook的频道互通的mc服务器插件\
 版本：Minecraft 1.19.3\
 基于Spigot api 与 JKook api 与 KookBC
